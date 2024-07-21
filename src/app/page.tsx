@@ -1,123 +1,74 @@
-"use client"
-import React from 'react';
-import { Search, MapPin, RefreshCw } from 'lucide-react';
-import { useRouter } from 'next/navigation';
+"use client";
+import React, { useState } from "react";
+import {
+  Search,
+  Plus,
+  Settings,
+  Download,
+  HelpCircle,
+  ChevronDown,
+} from "lucide-react";
+import SidebarDropdownMenus from "@/components/Sidebar";
 
-const ExaSearchInterface = () => {
+const PerplexityDarkUIClone: React.FC = () => {
+  const [query, setQuery] = useState("");
 
-  const router = useRouter()
-
-  function goToSearch() {
-    router.push("/search")
-  }
   return (
-    <div className="min-h-screen bg-gray-50 p-8">
-      <header className="flex justify-between items-center mb-12">
-        <div className="text-2xl font-bold">exa</div>
-        <div className="space-x-4">
-          <button className="bg-blue-100 text-blue-700 px-3 py-1 rounded-md">We're hiring</button>
-          <button className="text-blue-600">Go to homepage</button>
-        </div>
-      </header>
+    <div className="flex h-screen bg-[#1E1E1E] text-gray-200 font-sans">
+      {/* Sidebar */}
+      <SidebarDropdownMenus />
 
-      <main className="max-w-4xl mx-auto">
-        <h1 className="text-5xl font-bold mb-2">
-          The web, <span className="text-blue-600">organized</span>
+      {/* Main content */}
+      <div className="flex flex-col flex-grow pb-20 justify-center items-center">
+        <h1 className="text-5xl font-bold mb-12 text-center text-white">
+          The web, <span className="text-blue-500">organized</span>
         </h1>
-        <p className="mb-8">
-          Exa search uses embeddings to understand meaning. <a href="#" className="text-blue-600 underline">Learn more</a>
-        </p>
 
-        <div className="flex mb-8">
-          <div className="w-1/4 pr-4">
-            <select className="w-full p-2 border rounded">
-              <option>All</option>
-              <option>Company</option>
-              <option>News</option>
-              <option>Paper</option>
-              <option>Tweet</option>
-              <option>Blog post</option>
-            </select>
-            <button className="text-gray-600 mt-2">Show more</button>
-
-            <div className="mt-4">
-              <h3 className="font-semibold mb-2">Publish date</h3>
-              <select className="w-full p-2 border rounded">
-                <option>Any time</option>
-              </select>
-            </div>
-
-            <div className="mt-4">
-              <h3 className="font-semibold mb-2">Domain filter</h3>
-              {/* Add domain filter options here */}
-            </div>
-
-            <div className="mt-4">
-              <h3 className="font-semibold mb-2">Phrase filter</h3>
-              <span className="bg-blue-100 text-blue-700 px-2 py-1 rounded text-sm">New</span>
-              {/* Add phrase filter options here */}
-            </div>
-
-            <div className="mt-4">
-              <h3 className="font-semibold mb-2">Number of results</h3>
-              <select className="w-full p-2 border rounded">
-                <option>30</option>
-              </select>
+        <div className="max-w-2xl mx-auto">
+          <div className="bg-[#2D2D2D] border rounded-lg p-6 mb-6">
+            <input
+              type="text"
+              placeholder="Ask anything..."
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              className="w-full bg-transparent outline-none text-white placeholder-gray-400"
+            />
+            <div className="flex justify-between mt-3 text-sm">
+              <div>
+                {/* <button className="text-gray-400 mr-4">Focus</button>
+                <button className="text-gray-400">Attach</button> */}
+              </div>
+              <div className="flex items-center">
+                <span className="mr-2 text-gray-400">Pro</span>
+                <div className="w-8 h-4 bg-gray-600 rounded-full flex items-center">
+                  <div className="w-3 h-3 bg-white rounded-full ml-1"></div>
+                </div>
+              </div>
             </div>
           </div>
 
-          <div className="w-3/4">
-            <div className="border rounded-lg p-4 mb-4">
-              <div className="flex items-center mb-4">
-                <input
-                  type="text"
-                  placeholder="Try a search or paste a link to find similar"
-                  className="flex-grow p-2 border-b focus:outline-none focus:border-blue-500"
-                />
-                <MapPin className="text-gray-400 mx-2" />
-                <RefreshCw className="text-gray-400 mx-2" />
-              </div>
-              <div className="flex items-center justify-between">
-                <label className="flex items-center">
-                  <input type="checkbox" className="mr-2" />
-                  Auto
-                </label>
-                <button onClick={goToSearch} className="bg-blue-600 text-white px-4 py-2 rounded">
-                  <Search className="inline-block mr-2" />
-                  SEARCH
-                </button>
-              </div>
-            </div>
-
-            <div>
-              <h2 className="text-lg font-semibold mb-2">POPULAR SEARCHES</h2>
-              <div className="space-y-2">
-                <button className="bg-gray-100 text-gray-800 px-3 py-1 rounded mr-2">
-                  a short article about the early days of Google
-                </button>
-                <button className="bg-gray-100 text-gray-800 px-3 py-1 rounded mr-2">
-                  Start ups working on genetic sequencing
-                </button>
-                <button className="bg-gray-100 text-gray-800 px-3 py-1 rounded mr-2">
-                  Similar to https://waitbutwhy.com
-                </button>
-                <button className="bg-gray-100 text-gray-800 px-3 py-1 rounded">
-                  Samsung earnings report
-                </button>
-              </div>
-              <div className="bg-gray-100 p-4 mt-4 rounded">
-                <p className="text-sm">
-                  Abstract: The dominant sequence transduction models are based on complex recurrent
-                  or convolutional neural networks in an encoder-decoder configuration. The best
-                  performing models also connect the encoder and decoder through an attention...
-                </p>
-              </div>
-            </div>
+          <div className="grid grid-cols-2 gap-4">
+            <button className="bg-[#2D2D2D] rounded-lg p-3 text-left hover:bg-[#3D3D3D] text-sm">
+              <Search className="inline w-4 h-4 mr-2 text-blue-400" />
+              What is Samsung's market cap?
+            </button>
+            <button className="bg-[#2D2D2D] rounded-lg p-3 text-left hover:bg-[#3D3D3D] text-sm">
+              <Search className="inline w-4 h-4 mr-2 text-blue-400" />
+              Refund on delayed flight
+            </button>
+            <button className="bg-[#2D2D2D] rounded-lg p-3 text-left hover:bg-[#3D3D3D] text-sm">
+              <Search className="inline w-4 h-4 mr-2 text-purple-400" />
+              Most popular Youtube creators in 2024
+            </button>
+            <button className="bg-[#2D2D2D] rounded-lg p-3 text-left hover:bg-[#3D3D3D] text-sm">
+              <Search className="inline w-4 h-4 mr-2 text-yellow-400" />
+              What is somatic healing?
+            </button>
           </div>
         </div>
-      </main>
+      </div>
     </div>
   );
 };
 
-export default ExaSearchInterface;
+export default PerplexityDarkUIClone;
